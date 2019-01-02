@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.person-pic {
+    padding-left: 74px !important;
+    padding-top: 4px !important;
+}
+
+.collapse-navbar-collapse-width {
+    width: 1260px !important;
+}
