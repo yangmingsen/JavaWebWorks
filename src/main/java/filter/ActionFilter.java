@@ -10,15 +10,25 @@ import java.io.IOException;
 
 public class ActionFilter implements Filter {
     private String excludedPage;
+    private String excludedStaticResource;
     private String[] excludedPages;
-    private String[] excludedResources = {".jpg",".js",".css",".html"};
+    private String[] excludedStaticResources;
+    private String[] excludedResources = {".jpg",".js",".css",".html",".eot",
+            ".woff",".svg",".ttf",".otf",".woff2",".ico",".png",".gif","json"};
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         excludedPage = filterConfig.getInitParameter("excludedPages");
+        excludedStaticResource = filterConfig.getInitParameter("excludedStaticResources");
+
         if (excludedPage != null && excludedPage.length() > 0){
             excludedPages = excludedPage.split(",");
         }
+
+        if (excludedStaticResource != null && excludedStaticResource.length() > 0){
+            excludedStaticResources = excludedStaticResource.split(",");
+        }
+
     }
 
     @Override
@@ -34,7 +44,7 @@ public class ActionFilter implements Filter {
             chain.doFilter(req,resp);
         } else {
             if (!checkUserLogin(req)) {
-                req.getRequestDispatcher("login.html").forward(req,resp);
+                req.getRequestDispatcher("login.jsp").forward(req,resp);
             } else {
                 chain.doFilter(req,resp);
             }
@@ -48,6 +58,7 @@ public class ActionFilter implements Filter {
      * @return
      */
     public boolean checkUrlPageIsExcluded(HttpServletRequest req) {
+        System.out.println("req.getServletPath() = "+req.getServletPath());
         for (String excluded : excludedPages) {
             if (req.getServletPath().equals(excluded) || checkIsStaticResources(req.getServletPath())) {
                 return true;
@@ -57,12 +68,25 @@ public class ActionFilter implements Filter {
         return false;
     }
 
+    /**
+     * 过滤掉一些静态资源不用拦截
+     * @param resourcesPath
+     * @return
+     */
     public boolean checkIsStaticResources(String resourcesPath) {
-        for (String suffix : excludedResources) {
-            if(resourcesPath.endsWith(suffix)) {
+
+        for(String path : excludedStaticResources) {
+            if(resourcesPath.contains(path)) {
                 return true;
             }
         }
+
+        for (String suffix : excludedResources) {
+            if(resourcesPath.endsWith(suffix) ) {
+                return true;
+            }
+        }
+
         return false;
     }
 

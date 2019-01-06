@@ -16,8 +16,6 @@ import java.io.IOException;
 @WebServlet(name = "WriteBlogServlet",urlPatterns = "/blog/write")
 public class WriteBlogServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SimulateSession.simulateLogin(request);//模拟登陆
-
         request.setCharacterEncoding("utf-8");
 
         //如果不存在sessionid

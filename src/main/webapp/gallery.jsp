@@ -3,8 +3,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
      GalleryGroup  gallery = (GalleryGroup) request.getAttribute("gallery");
-     int contentsize = gallery.getAblum().getDescribe().length();
-     int segmentationPos = (contentsize*7)/10;//获取十分之七的中间点
+     int contentsize = 0 ;
+     int segmentationPos = 0;
+     if(gallery.getAblum().getDescribe()!=null) {
+          contentsize = gallery.getAblum().getDescribe().length();
+          segmentationPos = (contentsize*7)/10;//获取十分之七的中间点
+     }
 
 %>
 <!DOCTYPE html>
@@ -101,14 +105,15 @@
           <div class="row">
 
                <div class="col-md-offset-1 col-md-10 col-sm-12">
-                    <h2><%=gallery.getAblum().getTitle()%></h2>
+                    <h2><%=gallery.getAblum().getTitle()==null?null:gallery.getAblum().getTitle()%></h2>
                     <p>
-                         <%=gallery.getAblum().getDescribe().substring(0,segmentationPos)%>
+                         <%=gallery.getAblum().getDescribe()==null?null:gallery.getAblum().getDescribe().substring(0,segmentationPos)%>
                     </p>
                     <span></span>
 
 
                     <%
+                         if(gallery.getPhotos().size() > 0)
                          for (PoPhoto photo : gallery.getPhotos()) {
                          %>
                               <div class="col-md-6 col-sm-6">
@@ -126,7 +131,7 @@
 
                     <div class="col-md-12 col-sm-12">
                          <p>
-                              <%=gallery.getAblum().getDescribe().substring(segmentationPos,contentsize)%>
+                              <%=gallery.getAblum().getDescribe()==null?null:gallery.getAblum().getDescribe().substring(segmentationPos,contentsize)%>
                          </p>
                     </div>
                </div>

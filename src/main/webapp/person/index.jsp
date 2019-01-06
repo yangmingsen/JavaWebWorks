@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/others/BootStrap/bootstrap.min.css">
+    <script src="/others/BootStrap/jquery.min.js"></script>
+    <script src="/others/BootStrap/bootstrap.min.js"></script>
     <style type="text/css" >
 
 
@@ -316,7 +316,7 @@
         $("#submitInfo").click(function () {
             $.ajax({
                type: "POST",
-                url: "/user/?",
+                url: "/user/update",
                 async: false,
                 data: {
                     "nickname": $("#nickname").val(),

@@ -29,7 +29,6 @@ public class AboutMeServlet extends HttpServlet {
      * @throws IOException
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SimulateSession.simulateLogin(request);//模拟登陆
         //如果不存在sessionid
         if (! UserStats.checkSessionExsit(request.getSession().getId())) {
             request.getRequestDispatcher("login.html").forward(request,response);

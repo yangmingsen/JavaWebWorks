@@ -140,8 +140,11 @@ public class UserStats implements HttpSessionListener {
     public static String getUsernameBySessionid(String sessionid) {
 
         HttpSession session = getSessionHttpSeesionMap().get(sessionid);
+        if(session == null) return null;
+
         User user = (User)session.getAttribute(USER_INFO);
         return user.getUsername();
+
     }
 
     /**

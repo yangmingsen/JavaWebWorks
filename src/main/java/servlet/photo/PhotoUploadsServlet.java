@@ -36,7 +36,6 @@ public class PhotoUploadsServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1.检查用户必须登录，如果没有登录提示必须登录  这一步Filter做
-        SimulateSession.simulateLogin(request);//模拟登录
         //2.获取username
         String username = UserStats.getUsernameBySessionid(request.getSession().getId());
         List<PoPhoto> lists = new ArrayList<PoPhoto>();

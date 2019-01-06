@@ -12,8 +12,11 @@
 
      List<AeComment> comments = AeCommentDao.getInstance().search(blogId);
 
+     System.out.println("seesionid = "+request.getSession().getId());
+
      //评论必须登录
      String commenterUseranme = UserStats.getUsernameBySessionid(request.getSession().getId());
+     System.out.println("commentUser = "+commenterUseranme);
      if (commenterUseranme == null) {
           commenterUseranme = "";
      }
@@ -246,6 +249,13 @@
                               addComment();
                          } else if(status == 0 ) {
                               alert("评论失败!!!");
+                         }
+                    },
+                    error:function (exception) {
+                         var status = exception.status;
+                         console.log("exception.status = "+status);
+                         if(status == 404) {
+                              window.location.href="login.jsp";
                          }
                     }
 

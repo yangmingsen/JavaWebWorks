@@ -40,7 +40,7 @@
 							<div class="ececk_warning"><span>验证码不能为空</span></div>
 							
 							<div class="form_btn">
-								<button type="button" onindex.htmlclick="register()">注册</button>
+								<button type="button" onclick="register()">注册</button>
 							</div>
 							<div class="form_reg_btn">
 								<span>已有帐号？</span><a href="login.jsp">马上登录</a>

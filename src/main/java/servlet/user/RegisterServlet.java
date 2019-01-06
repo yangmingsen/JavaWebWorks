@@ -1,6 +1,7 @@
 package servlet.user;
 
 import com.google.gson.Gson;
+import dao.PoAblumDao;
 import dao.UserDao;
 import entity.Result;
 import entity.User;
@@ -42,6 +43,7 @@ public class RegisterServlet extends HttpServlet {
         Result result = null;
 
         if (UserDao.getInstance().insert(user)) {
+            PoAblumDao.getInstance().insert(username);//初始化用户相册描述信息
             result = new Result(1,"成功");
             jsonStr = gson.toJson(result,Result.class);
         } else {

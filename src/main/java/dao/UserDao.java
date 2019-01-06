@@ -149,6 +149,7 @@ public class UserDao {
             pstmt.setString(1,user.getUsername());
             pstmt.setString(2,user.getPassword());
 
+            pstmt.executeUpdate();
             return true;
         }catch (Exception e) {
             e.printStackTrace();
@@ -160,8 +161,8 @@ public class UserDao {
         PreparedStatement pstmt = null;
 
         String sql = "UPDATE `personal_blog`.`ur_user` SET `nickname`=?,`sex`=?,`phone`=?," +
-                "`email`=?,`personalizedSignature`=?,`personalIntroduce`=?," +
-                "`professionIntroduce`=?,`loveIntroduce`=?,`goalIntroduce`=? WHERE `username`=?";
+                "`email`=?,`personalized_signature`=?,`personal_introduce`=?," +
+                "`profession_introduce`=?,`love_introduce`=?,`goal_introduce`=? WHERE `username`=?";
 
         try {
             pstmt = conn.prepareStatement(sql);

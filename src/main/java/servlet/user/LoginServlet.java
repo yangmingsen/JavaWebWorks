@@ -48,6 +48,8 @@ public class LoginServlet extends HttpServlet {
             jsonStr = gson.toJson(result,Result.class);
         }
 
+        System.out.println("jsoStr = "+jsonStr);
+
         out.write(jsonStr);
     }
 

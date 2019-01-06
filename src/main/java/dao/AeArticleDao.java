@@ -60,6 +60,8 @@ public class AeArticleDao {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        } finally {
+            JdbcUtil.release(null,pstmt,null);
         }
 
         return true;

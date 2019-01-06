@@ -31,8 +31,6 @@ public class BlogCommentServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        SimulateSession.simulateLogin(request);
-
         request.setCharacterEncoding("UTF-8");
         String username = UserStats.getUsernameBySessionid(request.getSession().getId());
         String articleId = request.getParameter("blogId");

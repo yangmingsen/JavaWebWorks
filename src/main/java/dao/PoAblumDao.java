@@ -74,4 +74,31 @@ public class PoAblumDao {
         return null;
     }
 
+    /**
+     * 默认初始化用户是建立(注册用户后使用)
+     * @param username
+     * @return
+     */
+    public boolean insert(String username) {
+        PreparedStatement pstmt = null;
+        String sql = "insert into po_album (username)values(?)";
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,username);
+
+            int x = pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            JdbcUtil.release(null,pstmt,null);
+        }
+
+        return true;
+
+    }
+
+
 }
