@@ -100,5 +100,31 @@ public class PoAblumDao {
 
     }
 
+    /**
+     * 更新
+     * @param ablum
+     * @return
+     */
+    public boolean update(PoAblum ablum) {
+        PreparedStatement pstmt = null;
+        String sql = "UPDATE `personal_blog`.`po_album` SET" +
+                " `title` = ?, `describe` = ?, `update_date` = ? WHERE `username` = ?";
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,ablum.getTitle());
+            pstmt.setString(2,ablum.getDescribe());
+            pstmt.setString(3,ablum.getUpdateDate());
+            pstmt.setString(4,ablum.getUsername());
+
+            pstmt.executeUpdate();
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 }

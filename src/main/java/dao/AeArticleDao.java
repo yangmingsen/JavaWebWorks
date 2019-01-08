@@ -43,7 +43,7 @@ public class AeArticleDao {
 
     public boolean insert(AeArticle article) {
         PreparedStatement pstmt = null;
-        String sql = "insert into ae_article (id,username,title,content,write_date,update_date)values(?,?,?,?,?,?)";
+        String sql = "insert into ae_article (id,username,title,content,markdown_doc,write_date)values(?,?,?,?,?,?)";
 
         try {
             pstmt = conn.prepareStatement(sql);
@@ -52,8 +52,8 @@ public class AeArticleDao {
             pstmt.setString(2,article.getUsername());
             pstmt.setString(3,article.getTitle());
             pstmt.setString(4,article.getContent());
-            pstmt.setString(5,article.getWriteDate());
-            pstmt.setString(6,article.getUpdateDate());
+            pstmt.setString(5,article.getMarkdownDoc());
+            pstmt.setString(6,article.getWriteDate());
 
             int x = pstmt.executeUpdate();
 
@@ -87,8 +87,8 @@ public class AeArticleDao {
                         null,
                         null,
                         rs.getString("write_date"),
-                        rs.getString("update_date")
-                );
+                        rs.getString("update_date"),
+                        rs.getString("markdown_doc"));
             }
 
         } catch (Exception e) {
@@ -99,6 +99,41 @@ public class AeArticleDao {
         }
 
         return null;
+    }
+
+    public List<AeArticle> searchs(String username) {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM ae_article WHERE `username`=? ORDER BY ae_article.update_date DESC";
+
+        List<AeArticle> lists = new ArrayList<AeArticle>();
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,username);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                lists.add(new AeArticle(
+                        rs.getLong("id"),
+                        rs.getString("username"),
+                        rs.getString("title"),
+                        rs.getString("content"),
+                        null,
+                        null,
+                        rs.getString("write_date"),
+                        rs.getString("update_date"),
+                        rs.getString("markdown_doc")));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            JdbcUtil.release(null,pstmt,rs);
+        }
+
+        return lists;
     }
 
     public List<AeArticle> getAearticlePart() {
@@ -121,7 +156,8 @@ public class AeArticleDao {
                         null,
                         null,
                         rs.getString("write_date"),
-                        rs.getString("update_date")));
+                        rs.getString("update_date"),
+                        rs.getString("markdown_doc")));
             }
 
         } catch (Exception e) {
@@ -132,6 +168,31 @@ public class AeArticleDao {
         }
 
         return lists;
+    }
+
+    public boolean update(AeArticle article) {
+        PreparedStatement pstmt = null;
+        String sql = "UPDATE `personal_blog`.`ae_article` SET `title` = ?, `content` = ?, `update_date` = ?,`markdown_doc`=? WHERE `id` = ?";
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1,article.getTitle());
+            pstmt.setString(2,article.getContent());
+            pstmt.setString(3,article.getUpdateDate());
+            pstmt.setString(4,article.getMarkdownDoc());
+            pstmt.setLong(5,article.getId());
+
+            int x = pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            JdbcUtil.release(null,pstmt,null);
+        }
+
+        return true;
     }
 
 }

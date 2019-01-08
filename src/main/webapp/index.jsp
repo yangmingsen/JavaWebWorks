@@ -5,6 +5,7 @@
 <%@ page import="dao.AeArticleDao" %>
 <%@ page import="entity.User" %>
 <%@ page import="dao.UserDao" %>
+<%@ page import="dao.AeCommentDao" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     //1.定义一个IndexGroup数据List,作为数据填充List
@@ -13,7 +14,8 @@
     List<AeArticle> lists2 = AeArticleDao.getInstance().getAearticlePart();
     for (AeArticle article: lists2) {
         User user = UserDao.getInstance().search(article.getUsername());
-        lists.add(new IndexGroup(article,user,0));
+        int size = AeCommentDao.getInstance().search(article.getId().toString()).size();//获取文章评论数
+        lists.add(new IndexGroup(article,user,size));
     }
 
 %>
@@ -74,7 +76,7 @@
                 <li><a href="blogEdit.jsp">写博客</a></li>
                 <li><a href="contact.jsp">联系我</a></li>
                 <li>
-                    <a href="person/index.jsp" class="person-pic">
+                    <a href="/person/index.jsp" class="person-pic">
                         <img src="images/author-image1.jpg" height="40px" width="40px" class="img-circle">
                     </a>
                 </li>
@@ -94,7 +96,7 @@
         <div class="row">
 
             <div class="col-md-12 col-sm-12">
-                <h1>Hello! Yangmingsen.</h1>
+                <h1>Hello! Welcome!!!.</h1>
                 <h4>欢迎来到,你会是这里的主人</h4>
                 <a href="#blog" class="smoothScroll btn btn-default">Discover More</a>
             </div>

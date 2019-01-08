@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="/photo/uploads" enctype="multipart/form-data" method="post">
+    <form action="/gallery/upload" enctype="multipart/form-data" method="post">
         <input type="file" name="file" multiple="multiple" ><br>
         <input type="submit" value="提交">
     </form>

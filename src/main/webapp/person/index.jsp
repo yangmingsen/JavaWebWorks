@@ -155,9 +155,9 @@
                     <h2>个人管理</h2>
                     <div class="line"></div>
                     <ul class="main-setting-left-listWapper-menu">
-                        <li><a href="######">账号绑定</a></li>
-                        <li><a href="######">账号绑定</a></li>
-                        <li><a href="######">账号绑定</a></li>
+                        <li><a href="../index.jsp">主页</a></li>
+                        <li><a href="/person/myblogs.jsp">博客编辑</a></li>
+                        <li><a href="../uploadImages.jsp">上传相册</a></li>
                         <li><a href="######">账号绑定</a></li>
                     </ul>
                 </div>
@@ -344,7 +344,7 @@
         $("#submitGalleryInfo").click(function () {
             $.ajax({
                 type: "POST",
-                url: "/user/?",
+                url: "/user/update/galleryInfo",
                 async: false,
                 data: {
                     "title": $("#title").val(),

@@ -8,6 +8,14 @@ public class PoAblum extends Entity {
     private String updateDate;
 
     public PoAblum(){}
+
+    public PoAblum(String username,String title, String describe,String updateDate) {
+        this.title = title;
+        this.username = username;
+        this.describe = describe;
+        this.updateDate = updateDate;
+    }
+
     public PoAblum(Long id, String title, String username,
                    String describe, String updateDate) {
         this.id = id;

@@ -81,7 +81,7 @@
                     <li><a href="blogEdit.jsp">写博客</a></li>
                     <li><a href="contact.jsp">联系我</a></li>
                     <li>
-                         <a href="###" class="person-pic">
+                         <a href="/person/index.jsp" class="person-pic">
                               <img src="images/author-image1.jpg" height="40px" width="40px" class="img-circle">
                          </a>
                     </li>
@@ -255,6 +255,7 @@
                          var status = exception.status;
                          console.log("exception.status = "+status);
                          if(status == 404) {
+                              alert("你需要登录后评论!!!");
                               window.location.href="login.jsp";
                          }
                     }

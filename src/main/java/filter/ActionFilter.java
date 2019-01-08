@@ -44,7 +44,7 @@ public class ActionFilter implements Filter {
             chain.doFilter(req,resp);
         } else {
             if (!checkUserLogin(req)) {
-                req.getRequestDispatcher("login.jsp").forward(req,resp);
+                ((HttpServletResponse) response).sendRedirect("/login.jsp");
             } else {
                 chain.doFilter(req,resp);
             }

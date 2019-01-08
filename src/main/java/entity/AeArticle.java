@@ -5,6 +5,7 @@ public class AeArticle extends Entity{
     private String username;
     private String title;
     private String content;
+    private String markdownDoc;
     private String articlePhoto;//暂时先不用
     private String category;//暂时不用
     private String writeDate;
@@ -12,11 +13,23 @@ public class AeArticle extends Entity{
 
     public AeArticle() {    }
 
-    public AeArticle(Long id,String username, String title, String content, String writeDate,String updateDate) {
+    public AeArticle(Long id,String username, String title,
+                     String content, String updateDate,String markdownDoc) {
         this.id = id;
         this.username = username;
         this.title = title;
         this.content = content;
+        this.updateDate = updateDate;
+        this.markdownDoc = markdownDoc;
+    }
+
+    public AeArticle(Long id, String username, String title, String content,
+                     String writeDate, String updateDate, String markdownDoc) {
+        this.id = id;
+        this.username = username;
+        this.title = title;
+        this.content = content;
+        this.markdownDoc = markdownDoc;
         this.writeDate = writeDate;
         this.updateDate = updateDate;
     }
@@ -24,7 +37,7 @@ public class AeArticle extends Entity{
     public AeArticle(Long id, String username,
                      String title, String content,
                      String articlePhoto, String category,
-                     String writeDate, String updateDate) {
+                     String writeDate, String updateDate,String markdownDoc) {
         this.id = id;
         this.username = username;
         this.title = title;
@@ -33,6 +46,15 @@ public class AeArticle extends Entity{
         this.category = category;
         this.writeDate = writeDate;
         this.updateDate = updateDate;
+        this.markdownDoc = markdownDoc;
+    }
+
+    public String getMarkdownDoc() {
+        return markdownDoc;
+    }
+
+    public void setMarkdownDoc(String markdownDoc) {
+        this.markdownDoc = markdownDoc;
     }
 
     public Long getId() {

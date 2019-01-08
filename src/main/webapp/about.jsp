@@ -59,7 +59,7 @@
                     <li><a href="blogEdit.jsp">写博客</a></li>
                     <li><a href="contact.jsp">联系我</a></li>
                     <li>
-                         <a href="###" class="person-pic">
+                         <a href="/person/index.jsp" class="person-pic">
                               <img src="images/author-image1.jpg" height="40px" width="40px" class="img-circle">
                          </a>
                     </li>

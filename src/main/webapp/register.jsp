@@ -7,6 +7,13 @@
 		<link rel="stylesheet" href="others/reg/css/reset.css" />
 		<link rel="stylesheet" href="others/reg/css/common.css" />
 		<link rel="stylesheet" href="others/reg/css/font-awesome.min.css" />
+		<style type="text/css">
+			.form_text_ipt,.form_text_ipt input {
+				background: #83939005;
+				border-radius: 15%;
+			}
+
+		</style>
 	</head>
 	<body>
 		<div class="wrap login_wrap">
