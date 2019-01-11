@@ -17,12 +17,11 @@ import java.io.PrintWriter;
 public class ContactServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
+
         String fromEmail = request.getParameter("from");
         String toEmail = request.getParameter("to");
         String subject = request.getParameter("subject");
-        System.out.println("subject = "+subject);
         String message = request.getParameter("message");
-        System.out.println("message = "+message);
         String date = DateHelpler.getDateMatchOne();
 
         CtContact contact = new CtContact(fromEmail,toEmail,subject,message,date);

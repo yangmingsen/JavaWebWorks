@@ -27,7 +27,6 @@ public class GalleryServlet extends HttpServlet {
         //2.获取username,根据username去po_album表查询画廊信息，然后在根据username去po_photo表中查询最新的6张上传照片。
 
         String username = UserStats.getUsernameBySessionid(request.getSession().getId());
-        System.out.println("username = "+username);
 
         PoAblum ablum = PoAblumDao.getInstance().search(username);
         List<PoPhoto> photos = PoPhotoDao.getInstance().searchs(username);

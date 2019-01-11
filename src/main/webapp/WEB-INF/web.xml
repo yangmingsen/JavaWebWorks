@@ -15,22 +15,22 @@
     <session-timeout>10</session-timeout>
   </session-config>
 
-  <!--<filter>-->
-    <!--<filter-name>ActionFilter</filter-name>-->
-    <!--<filter-class>filter.ActionFilter</filter-class>-->
-    <!--<init-param>-->
-      <!--<param-name>excludedPages</param-name>-->
-      <!--<param-value>/user/login,/user/register,/user/check,/blogDetail.jsp,/contact.jsp,/login.jsp,/register.jsp,/index.jsp</param-value>-->
-    <!--</init-param>-->
-    <!--<init-param>-->
-      <!--<param-name>excludedStaticResources</param-name>-->
-      <!--<param-value>/css,/fonts,/images,/js,/markdown,/others</param-value>-->
-    <!--</init-param>-->
-  <!--</filter>-->
-  <!--<filter-mapping>-->
-    <!--<filter-name>ActionFilter</filter-name>-->
-    <!--<url-pattern>/*</url-pattern>-->
-  <!--</filter-mapping>-->
+  <filter>
+    <filter-name>ActionFilter</filter-name>
+    <filter-class>filter.ActionFilter</filter-class>
+    <init-param>
+      <param-name>excludedPages</param-name>
+      <param-value>/user/login,/user/register,/user/check,/blogDetail.jsp,/contact.jsp,/login.jsp,/register.jsp,/index.jsp</param-value>
+    </init-param>
+    <init-param>
+      <param-name>excludedStaticResources</param-name>
+      <param-value>/css,/fonts,/images,/js,/markdown,/others</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>ActionFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>

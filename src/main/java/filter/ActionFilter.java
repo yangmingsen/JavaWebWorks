@@ -40,6 +40,8 @@ public class ActionFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest)request;
         HttpServletResponse resp = (HttpServletResponse)response;
 
+        System.out.println("sessionid = "+((HttpServletRequest) request).getSession().getId());
+
         if(checkUrlPageIsExcluded(req)) {
             chain.doFilter(req,resp);
         } else {
@@ -60,9 +62,13 @@ public class ActionFilter implements Filter {
     public boolean checkUrlPageIsExcluded(HttpServletRequest req) {
         System.out.println("req.getServletPath() = "+req.getServletPath());
         for (String excluded : excludedPages) {
-            if (req.getServletPath().equals(excluded) || checkIsStaticResources(req.getServletPath())) {
+            if (req.getServletPath().equals(excluded) ) {
                 return true;
             }
+        }
+
+        if(checkIsStaticResources(req.getServletPath())) {
+            return true;
         }
 
         return false;
@@ -81,11 +87,11 @@ public class ActionFilter implements Filter {
             }
         }
 
-        for (String suffix : excludedResources) {
-            if(resourcesPath.endsWith(suffix) ) {
-                return true;
-            }
-        }
+//        for (String suffix : excludedResources) {
+//            if(resourcesPath.endsWith(suffix) ) {
+//                return true;
+//            }
+//        }
 
         return false;
     }

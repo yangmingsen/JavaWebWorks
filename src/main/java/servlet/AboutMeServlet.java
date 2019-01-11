@@ -30,16 +30,11 @@ public class AboutMeServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //如果不存在sessionid
-        if (! UserStats.checkSessionExsit(request.getSession().getId())) {
-            request.getRequestDispatcher("login.html").forward(request,response);
+        String username = UserStats.getUsernameBySessionid(request.getSession().getId());
+        User user = UserDao.getInstance().search(username);
+        request.setAttribute("UserInfo",user);
 
-        } else {
-            String username = UserStats.getUsernameBySessionid(request.getSession().getId());
-            User user = UserDao.getInstance().search(username);
-            request.setAttribute("UserInfo",user);
+        request.getRequestDispatcher("/about.jsp").forward(request,response);
 
-            request.getRequestDispatcher("/about.jsp").forward(request,response);
-
-        }
     }
 }

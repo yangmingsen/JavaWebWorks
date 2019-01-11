@@ -112,7 +112,7 @@
 <script type="application/javascript">
      function load() {
           var obj = document.getElementById("home");
-          obj.style.background = "url('images/blog-image1.jpg')";
+          obj.style.background = "url('images/view6.jpg')";
      }
      load();
 </script>

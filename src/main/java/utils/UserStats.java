@@ -76,6 +76,17 @@ public class UserStats implements HttpSessionListener {
         return USERID_SESSIONID.containsKey(username);
     }
 
+
+    /**
+     * 以sessionid方式检测用户在服务器中是否存在 在 SESSION_HTTPSESSION中
+     * @param sessionid
+     * @return
+     */
+    public static boolean checkSessionExsit(String sessionid) {
+        return getSessionHttpSeesionMap().containsKey(sessionid);
+    }
+
+
     /**
      * 获取所有Seesion列表
      * @return
@@ -112,15 +123,6 @@ public class UserStats implements HttpSessionListener {
         }
 
         return true;
-    }
-
-    /**
-     * 以sessionid方式检测用户在服务器中是否存在 在 SESSION_HTTPSESSION中
-     * @param sessionid
-     * @return
-     */
-    public static boolean checkSessionExsit(String sessionid) {
-        return getSessionHttpSeesionMap().containsKey(sessionid);
     }
 
     /**

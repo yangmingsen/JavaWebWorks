@@ -92,23 +92,30 @@
 			function register() {
 				var username = $("#username").val();
 				var password = $("#password").val();
-				$.ajax({
-					type: "POST",
-					url: "/user/register",
-					async: true,
-					data: {"username": username,"password":password},
-					dataType: "json",
-					success: function (data) {
-						var status = data.status;
 
-						if (status == 1) {
-							alert("注册成功!!!")
-							window.location.href = "login.jsp";
-						} else if(status == 0 ) {
-							alert("注册失败!!!");
+				if(username.length>0 && password.length>0) {
+					$.ajax({
+						type: "POST",
+						url: "/user/register",
+						async: true,
+						data: {"username": username,"password":password},
+						dataType: "json",
+						success: function (data) {
+							var status = data.status;
+
+							if (status == 1) {
+								alert("注册成功!!!")
+								window.location.href = "login.jsp";
+							} else if(status == 0 ) {
+								alert("注册失败!!!");
+							}
 						}
-					}
-				});
+					});
+				} else {
+					alert("请输入账号密码!!!");
+				}
+
+
 			}
 
 

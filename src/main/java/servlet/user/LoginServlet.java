@@ -31,9 +31,8 @@ public class LoginServlet extends HttpServlet {
         boolean userExsit = UserDao.getInstance().checkUserAccount(username,password);
 
         if (userExsit) {
-            if (!UserStats.checkUserExsit(username)) {
+            if (!UserStats.checkSessionExsit(request.getSession().getId())) {
                 User tmpUser = UserDao.getInstance().search(username);
-                System.out.println("username不存在 LoginServlet.java");
                 //保存Session
                 HttpSession session = request.getSession();
                 session.setAttribute("userInfo",tmpUser);

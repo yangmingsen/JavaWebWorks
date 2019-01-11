@@ -77,10 +77,11 @@ public class PoPhotoDao {
         ResultSet rs = null;
         List<PoPhoto> lists = new ArrayList<PoPhoto>();
 
-        String sql = "SELECT * FROM po_photo ORDER BY po_photo.date DESC LIMIT 0,6";
+        String sql = "SELECT * FROM po_photo where `username`=? ORDER BY po_photo.date DESC LIMIT 0,6";
 
         try {
             pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,username);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 lists.add(new PoPhoto(
