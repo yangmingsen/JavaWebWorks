@@ -1,5 +1,6 @@
 package filter;
 
+import utils.ParseHttpData;
 import utils.UserStats;
 
 import javax.servlet.*;
@@ -40,7 +41,10 @@ public class ActionFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest)request;
         HttpServletResponse resp = (HttpServletResponse)response;
 
-        System.out.println("sessionid = "+((HttpServletRequest) request).getSession().getId());
+        ParseHttpData.parse(req);
+        System.out.println("sessionid ="+((HttpServletRequest) request).getSession().getId());
+        System.out.println();
+
 
         if(checkUrlPageIsExcluded(req)) {
             chain.doFilter(req,resp);
@@ -60,7 +64,7 @@ public class ActionFilter implements Filter {
      * @return
      */
     public boolean checkUrlPageIsExcluded(HttpServletRequest req) {
-        System.out.println("req.getServletPath() = "+req.getServletPath());
+       // System.out.println("req.getServletPath() = "+req.getServletPath());
         for (String excluded : excludedPages) {
             if (req.getServletPath().equals(excluded) ) {
                 return true;

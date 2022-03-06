@@ -128,7 +128,7 @@
                                 <span><a href="#"><i class="fa fa-comment-o"></i> <%=data.getCommentNum()%></a></span>
                             </div>
                             <div class="blog-post-des">
-                                <%=data.getArticle().getContent()%>
+<%--                                <%=data.getArticle().getContent()%>--%>
 
                                 <a href="/blogDetail.jsp?id=<%=data.getArticle().getId()%>" class="btn btn-default">Continue Reading</a>
                             </div>
